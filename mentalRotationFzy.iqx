@@ -1,0 +1,103 @@
+﻿<picture R> 
+	/items = ("Rs\R1.JPG","Rs\R2.JPG","Rs\R3.JPG","Rs\R4.JPG","Rs\R5.JPG","Rs\R6.JPG")
+	/size = (500,500)
+</picture>
+
+<picture W>
+	/items = ("Rs\W1.JPG","Rs\W2.JPG","Rs\W3.JPG","Rs\W4.JPG","Rs\W5.JPG","Rs\W6.JPG")
+	/size = (500,500)
+</picture>
+
+<text CorrectMsg>
+	/items = ("√")
+	/ fontstyle = ("Adobe Arabic", 9%, false, false, false, false, 5, 1)
+	/ txcolor = (0, 128, 0)
+	/txbgcolor = (transparent)
+</text>
+
+<text ErrorMsg>
+	/items = ("×")
+	/ fontstyle = ("Adobe Arabic", 9%, false, false, false, false, 5, 1)
+	/ txcolor = (255, 0, 0)
+	/txbgcolor = (transparent)
+</text>
+
+<text Fixation>
+	/items = ("+")
+	/ fontstyle = ("Adobe Arabic", 9.00%, false, false, false, false, 5, 1)
+	/ txcolor = (2555,255,255)
+	/txbgcolor = (transparent)
+</text>
+
+<text Instructiontxt>
+	/hjustify = left
+	/items = ("请将左右食指分别放在“Z”和“/”键上;正R按Z，反R按/。")
+	/ fontstyle = ("Adobe Arabic", 7.00%, false, false, false, false, 5, 1)
+	/ txcolor = (255, 255, 255)
+	/txbgcolor = (transparent)
+</text>
+
+<text anykeytxt>
+	/items = ("按任意键开始实验")
+	/vposition = 70pct
+	/ fontstyle = ("Adobe Arabic", 9.00%, false, false, false, false, 5, 1)
+	/ txcolor = (255, 0, 0)
+	/txbgcolor = (transparent)
+</text>
+
+
+<text blank>
+	/items = ("")
+	/txbgcolor = (0,0,0)
+	/size = (500,500)
+
+</text>
+
+
+<trial Instruction> 
+	/validresponse = (anyresponse) 
+	/stimulusframes = [1 = Instructiontxt,anykeytxt]
+	/recorddata = false
+</trial>
+<trial RTrials>
+	/correctmessage = (CorrectMsg,500)
+	/ errormessage = (ErrorMsg,500)
+	/posttrialpause = rand(800,1200)
+	/validresponse = ("z","/")
+	/correctresponse = ("z")
+	/stimulustimes = [1=Fixation; 500=R;700=blank]
+</trial>
+<trial WTrials>
+	/correctmessage = (CorrectMsg,500)
+	/ errormessage = (ErrorMsg,500)
+	/posttrialpause = rand(800,1200)
+	/validresponse = ("z","/")
+	/correctresponse = ("/")
+	/stimulustimes = [1=Fixation; 500=W;700=blank]
+</trial>
+
+
+<block mentalRotationBlk>
+	/screencolor = (0,0,0)
+	/ blockfeedback = (meanlatency,correct)
+	/trials = [1-24 = noreplace(RTrials,WTrials)]
+</block>
+
+<block instruction>
+	/screencolor = (0,0,0)
+	/trials = [1=Instruction]
+</block>
+
+
+<expt SR12>
+/ blocks = [1=instruction;2=mentalRotationBlk]
+
+</expt>
+
+
+
+
+
+
+
+
